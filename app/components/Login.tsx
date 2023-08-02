@@ -6,8 +6,15 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import { IconButton } from "@mui/material";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { auth } from "@/firebase";
 
 function Login() {
+  const signInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider);
+  };
+
   return (
     <div className="login-bg h-screen w-screen flex justify-center items-center">
       <div className="glassmorphism w-[100%] md:w-[40%] h-auto rounded-lg p-10 shadow-lg flex flex-col justify-between">
@@ -20,7 +27,10 @@ function Login() {
         </div>
 
         <div className="flex flex-col space-y-3 pb-3">
-          <button className="flex w-full bg-white border duration-150 justify-center space-x-3 rounded-full p-3 text-center hover:outline hover:outline-blue-400 hover:outline-offset-2 ">
+          <button
+            onClick={signInWithGoogle}
+            className="flex w-full bg-white border duration-150 justify-center space-x-3 rounded-full p-3 text-center hover:outline hover:outline-blue-400 hover:outline-offset-2 "
+          >
             <GoogleIcon />
             <p className="font-bold">Continue with Google</p>
           </button>
@@ -37,10 +47,10 @@ function Login() {
         </div>
 
         <div className=" flex flex-col space-y-3 ">
-          <div className="flex flex-row items-center justify-center text-center p-3">
-            <hr className="w-full md:w-1/3 h-1  bg-gray-500 border-0 rounded" />
-            <AlternateEmailIcon className="w-2/4 md:w-1/3" />
-            <hr className="w-1/4 md:w-1/3  h-1  bg-gray-500 border-0 rounded" />
+          <div className="flex flex-row justify-center items-center">
+            <hr className="w-1/4 h-1  bg-gray-500 border-0 rounded" />
+            <AlternateEmailIcon className="w-2/4 m-3" />
+            <hr className="w-1/4 h-1  bg-gray-500 border-0 rounded" />
           </div>
           <input
             type="email"

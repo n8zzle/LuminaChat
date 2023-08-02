@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import NavBar from "./components/Navbar";
-import Login from "./components/Login";
+import Provider from "./components/Provider";
 
 export const metadata: Metadata = {
   title: "Lumina-Chat",
@@ -13,17 +12,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const isAuthenticated = false;
-  if (!isAuthenticated) {
-    return <Login />;
-  } else {
-    return (
-      <html lang="en">
-        <body className="w-screen h-screen flex">
-          <NavBar />
-          {children}
-        </body>
-      </html>
-    );
-  }
+  return (
+    <html lang="en">
+      <body className="w-screen h-screen flex">
+        <Provider>{children}</Provider>
+      </body>
+    </html>
+  );
 }

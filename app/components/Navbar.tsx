@@ -4,7 +4,11 @@ import React from "react";
 import ChatIcon from "@mui/icons-material/Chat";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Link from "next/link";
+import { IconButton } from "@mui/material";
+import { signOut } from "firebase/auth";
+import { auth } from "@/firebase";
 
 function NavBar() {
   const [menuButton, openMenu] = React.useState(true);
@@ -18,8 +22,13 @@ function NavBar() {
           </div>
         </Link>
 
-        <div className="text-center">
-          <ArrowBackIosIcon onClick={() => openMenu(!menuButton)} />
+        <div className="flex justify-between">
+          <IconButton onClick={() => signOut(auth)}>
+            <ExitToAppIcon />
+          </IconButton>
+          <IconButton onClick={() => openMenu(!menuButton)}>
+            <ArrowBackIosIcon />
+          </IconButton>
         </div>
       </main>
     );
@@ -33,8 +42,13 @@ function NavBar() {
           </div>
         </Link>
 
-        <div className="text-center">
-          <ArrowForwardIosIcon onClick={() => openMenu(!menuButton)} />
+        <div className="flex justify-between">
+          <IconButton onClick={() => signOut(auth)}>
+            <ExitToAppIcon />
+          </IconButton>
+          <IconButton onClick={() => openMenu(!menuButton)}>
+            <ArrowForwardIosIcon />
+          </IconButton>
         </div>
       </main>
     );
