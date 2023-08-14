@@ -81,9 +81,9 @@ function NavBar() {
         </div>
       </div>
 
-      <div className="h-full  p-3 space-y-5">
-        <form className="flex flex-row items-center hover:outline hover:outline-2 hover:rounded-lg hover:outline-gray-200  ">
-          <SearchIcon className="text-gray-400" />
+      <div className="h-full space-y-5 p-3">
+        <form className="flex flex-row items-center hover:outline hover:outline-2 hover:rounded-lg hover:outline-gray-200 ">
+          <SearchIcon className="text-gray-400 ml-3" />
           <input
             type="search"
             placeholder={"Search..."}

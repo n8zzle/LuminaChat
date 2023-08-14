@@ -1,4 +1,4 @@
-import { IconButton } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import getRecipientEmail from "@/utils/getRecipientEmail";
@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "@/firebase";
 import { collection, query, where } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
+import Link from "next/link";
 
 const Chat = ({ id, users }) => {
   //console.log(id, users);
@@ -15,25 +16,49 @@ const Chat = ({ id, users }) => {
   const [recipientSnapshot] = useCollection(
     query(collection(db, "users"), where("email", "==", recipientEmail))
   );
-  console.log(recipientSnapshot);
+  //console.log(recipientSnapshot?.docs?.[0]?.data());
   const recipient = recipientSnapshot?.docs?.[0]?.data();
   console.log(recipient);
+
   return (
     <div>
       {recipient ? (
-        <Image src={recipient.photoURL} width={40} height={40} />
+        <Link
+          href={{
+            pathname: `/${id}/`,
+            query: {
+              email: `${recipientEmail}`,
+              photoUrl: `${recipient.photoUrl}`,
+              lastSeen: recipient.lastSeen.seconds,
+            },
+          }}
+        >
+          <div className="flex items-center space-x-2 hover:bg-gray-200 w-full p-3 rounded-lg">
+            <Image
+              src={recipient.photoUrl}
+              height={40}
+              width={40}
+              className="rounded-full"
+            />
+            <p>{recipientEmail}</p>
+          </div>
+        </Link>
       ) : (
-        <p>{recipientEmail}</p>
+        <Link
+          href={{
+            pathname: `/${id}/`,
+            query: {
+              email: `${recipientEmail}`,
+              photoUrl: null,
+            },
+          }}
+        >
+          <div className="flex items-center space-x-2 hover:bg-gray-200 w-full p-3 rounded-lg">
+            <Avatar>{recipientEmail[0]}</Avatar>
+            <p>{recipientEmail}</p>
+          </div>
+        </Link>
       )}
-      {/*<IconButton className="hover:opacity-80">
-        <Image
-          src={props.users.photoURL}
-          width={40}
-          height={40}
-          className="rounded-full"
-        />
-      </IconButton>
-      */}
     </div>
   );
 };
