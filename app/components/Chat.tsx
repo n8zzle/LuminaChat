@@ -18,7 +18,7 @@ const Chat = ({ id, users }) => {
   );
   //console.log(recipientSnapshot?.docs?.[0]?.data());
   const recipient = recipientSnapshot?.docs?.[0]?.data();
-  console.log(recipient);
+  //console.log(recipient);
 
   return (
     <div>

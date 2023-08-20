@@ -57,7 +57,7 @@ function NavBar() {
   return (
     <main className="h-screen w-[30%] flex flex-col  duration-300 bg-gray-50">
       <div className="w-full flex p-3 justify-between items-center">
-        <div>
+        <div className="flex items-center space-x-3">
           <IconButton
             className="hover:opacity-80"
             onClick={() => signOut(auth)}
@@ -69,7 +69,7 @@ function NavBar() {
               className="rounded-full"
             />
           </IconButton>
-          {user?.displayName}
+          <p>{user?.displayName}</p>
         </div>
         <div>
           <IconButton>
