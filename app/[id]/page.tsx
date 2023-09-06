@@ -51,8 +51,6 @@ const Chat = ({ searchParams }) => {
     </div>
   );
 };
-// --TODO Test
-//
 export default Chat;
 
 async function getData(user) {
