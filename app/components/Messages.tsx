@@ -1,14 +1,25 @@
 "use client";
 import React from "react";
 import TelegramIcon from "@mui/icons-material/Telegram";
-import { IconButton } from "@mui/material";
-
+import { Box, IconButton, Modal } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 const Messages = ({ data }) => {
   console.log(data);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <div className="login-bg w-full h-full flex">
       <div className="my-auto mx-auto w-[90%] h-[90%] glassmorphism rounded-lg p-5">
-        <div className="h-[95%]">Chat</div>
+        <IconButton onClick={handleOpen} className="absolute right-5">
+          <InfoIcon />
+        </IconButton>
+
+        <div className="h-[95%]">
+          <h1 className="text-4xl font-bold">
+            Here i should display all messages
+          </h1>
+        </div>
         <div className="h-[5%] flex justify-between items-center bg-gray-50 rounded-full p-3">
           <div className="w-[95%] ">
             <input
@@ -21,6 +32,17 @@ const Messages = ({ data }) => {
             <IconButton>
               <TelegramIcon className="text-black" />
             </IconButton>
+
+            <Modal open={open} onClose={handleClose}>
+              <Box className="absolute top-[50%] left-[50%]">
+                <h1 className="text-white">
+                  <span className="font-bold">Chat ID:</span> {data?.chat.id}
+                </h1>
+                <p className="text-white">
+                  <span className="font-bold">Messages:</span> {data?.messages}
+                </p>
+              </Box>
+            </Modal>
           </div>
         </div>
       </div>
@@ -29,3 +51,4 @@ const Messages = ({ data }) => {
 };
 
 export default Messages;
+//
