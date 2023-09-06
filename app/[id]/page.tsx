@@ -1,7 +1,7 @@
 "use client";
 import { Avatar, IconButton } from "@mui/material";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Messages from "../components/Messages";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
@@ -18,16 +18,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 // const Chat = ({ chat, messages }) => {
 const Chat = ({ searchParams }) => {
   const [user] = useAuthState(auth);
-  console.log(searchParams.email);
-  console.log(searchParams.photoUrl);
+  const [chatData, setChatData] = useState(null);
 
-  const data = getData(user).then((d) => {
-    /* console.log(d.chat.id, d.messages); */
-    const newData = [d.chat.id, d.messages];
-    return {
-      newData,
-    };
-  });
+  useEffect(() => {
+    getData(user).then((d) => {
+      setChatData(d);
+    });
+  }, [user]);
+
   return (
     <div className=" w-screen flex flex-col">
       <div className="p-5 flex items-center bg-gray-50 space-x-5">
@@ -49,7 +47,7 @@ const Chat = ({ searchParams }) => {
           </div>
         </div>
       </div>
-      <Messages data={data} />
+      <Messages data={chatData} />
     </div>
   );
 };

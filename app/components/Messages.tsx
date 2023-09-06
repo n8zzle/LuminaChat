@@ -2,7 +2,9 @@
 import React from "react";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { IconButton } from "@mui/material";
-const Messages = () => {
+
+const Messages = ({ data }) => {
+  console.log(data);
   return (
     <div className="login-bg w-full h-full flex">
       <div className="my-auto mx-auto w-[90%] h-[90%] glassmorphism rounded-lg p-5">
