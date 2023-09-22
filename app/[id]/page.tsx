@@ -26,6 +26,8 @@ const Chat = ({ searchParams }) => {
     });
   }, [user]);
 
+  // console.log(chatData);
+
   return (
     <div className=" w-screen flex flex-col">
       <div className="p-5 flex items-center bg-gray-50 space-x-5">
@@ -38,7 +40,9 @@ const Chat = ({ searchParams }) => {
         <div className="flex justify-between w-full">
           <div>
             <p>{searchParams.email}</p>
-            <p className="text-xs text-gray-500">Last Seen: 16:38</p>
+            <p className="text-xs text-gray-500">
+              Last Seen: {searchParams.lastSeen}
+            </p>
           </div>
           <div>
             <IconButton>
@@ -72,7 +76,7 @@ async function getData(user) {
       ...messages,
       timestamp: messages.timestamp.toDate().getTime(),
     }));
-
+  console.log(messages);
   //Preparing the chats
   const chatDoc = await getDoc(chatRef);
   const chat = {
