@@ -4,7 +4,7 @@ import TelegramIcon from "@mui/icons-material/Telegram";
 import { Box, IconButton, Modal } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 const Messages = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -15,12 +15,12 @@ const Messages = ({ data }) => {
           <InfoIcon />
         </IconButton>
 
-        <div className="h-[95%]">
+        <div className="h-[93%]">
           <h1 className="text-4xl font-bold">
             Here i should display all messages
           </h1>
         </div>
-        <div className="h-[5%] flex justify-between items-center bg-gray-50 rounded-full p-3">
+        <div className="h-[10%] flex justify-between items-center bg-gray-50 rounded-full p-3">
           <div className="w-[95%] ">
             <input
               type="text"
