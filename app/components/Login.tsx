@@ -1,16 +1,16 @@
 "use client";
 import React from "react";
 import GoogleIcon from "@mui/icons-material/Google";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import GitHubIcon from "@mui/icons-material/GitHub";
+// import FacebookIcon from "@mui/icons-material/Facebook";
+// import GitHubIcon from "@mui/icons-material/GitHub";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import {
-  signInWithPopup,
+  // FacebookAuthProvider,
+  // getAdditionalUserInfo,
+  // GithubAuthProvider,
   GoogleAuthProvider,
-  FacebookAuthProvider,
-  GithubAuthProvider,
-  updateProfile,
-  getAdditionalUserInfo,
+  signInWithPopup,
+  // updateProfile,
 } from "firebase/auth";
 import { auth } from "@/firebase";
 import { Typewriter } from "react-simple-typewriter";
@@ -22,23 +22,23 @@ function Login() {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider);
   };
-  const signInWithFacebook = () => {
-    const provider = new FacebookAuthProvider();
-    signInWithPopup(auth, provider).then((result) => {
-      // The signed-in user info.
-      const user = result.user;
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      const credential = FacebookAuthProvider.credentialFromResult(result);
-      const accessToken = credential.accessToken;
-      updateProfile(user, {
-        photoURL: getAdditionalUserInfo(result)?.profile.picture.data.url,
-      });
-    });
-  };
-  const signInWithGitHub = () => {
-    const provider = new GithubAuthProvider();
-    signInWithPopup(auth, provider);
-  };
+  // const signInWithFacebook = () => {
+  //   const provider = new FacebookAuthProvider();
+  //   signInWithPopup(auth, provider).then((result) => {
+  //     // The signed-in user info.
+  //     const user = result.user;
+  //     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+  //     const credential = FacebookAuthProvider.credentialFromResult(result);
+  //     const accessToken = credential.accessToken;
+  //     updateProfile(user, {
+  //       photoURL: getAdditionalUserInfo(result)?.profile.picture.data.url,
+  //     });
+  //   });
+  // };
+  // const signInWithGitHub = () => {
+  //   const provider = new GithubAuthProvider();
+  //   signInWithPopup(auth, provider);
+  // };
   const phrases = [
     "Welcome to Lumina-Chat",
     "Keys click, ideas flow",
@@ -69,22 +69,22 @@ function Login() {
             <GoogleIcon />
             <p className="font-bold">Continue with Google</p>
           </button>
-
-          <button
-            onClick={signInWithFacebook}
-            className="flex w-full bg-white border duration-150 justify-center space-x-3 rounded-full p-3 text-center hover:outline hover:outline-blue-400 hover:outline-offset-2 "
-          >
-            <FacebookIcon />
-            <p className="font-bold">Continue with Facebook</p>
-          </button>
-
-          <button
-            onClick={signInWithGitHub}
-            className="flex w-full bg-white border duration-150 justify-center space-x-3 rounded-full p-3 text-center hover:outline hover:outline-blue-400 hover:outline-offset-2 "
-          >
-            <GitHubIcon />
-            <p className="font-bold">Continue with GitHub</p>
-          </button>
+          {/**/}
+          {/* <button */}
+          {/*   onClick={signInWithFacebook} */}
+          {/*   className="flex w-full bg-white border duration-150 justify-center space-x-3 rounded-full p-3 text-center hover:outline hover:outline-blue-400 hover:outline-offset-2 " */}
+          {/* > */}
+          {/*   <FacebookIcon /> */}
+          {/*   <p className="font-bold">Continue with Facebook</p> */}
+          {/* </button> */}
+          {/**/}
+          {/* <button */}
+          {/*   onClick={signInWithGitHub} */}
+          {/*   className="flex w-full bg-white border duration-150 justify-center space-x-3 rounded-full p-3 text-center hover:outline hover:outline-blue-400 hover:outline-offset-2 " */}
+          {/* > */}
+          {/*   <GitHubIcon /> */}
+          {/*   <p className="font-bold">Continue with GitHub</p> */}
+          {/* </button> */}
         </div>
         {/*TODO: */}
         {/* <div className=" flex flex-col space-y-3 ">
